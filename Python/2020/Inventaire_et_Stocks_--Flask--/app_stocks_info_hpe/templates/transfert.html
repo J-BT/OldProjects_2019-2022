@@ -1,0 +1,117 @@
+{% extends "nouvelle_base_admin.html" %}
+
+{% block content %}
+  <div class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+       {%if messages %}
+            {%for category, message in messages %}
+              <div class="alert alert-{{ category }}">
+                <h4 style="text-align:center;">{{ message }}</h4>
+              </div>
+            {%endfor%}
+      {%endif %}
+    {%endwith%}
+  </div>
+  <div class="container">
+
+<h1>Destockage</h1>
+<div >
+  <h3 style="display: inline-block;margin:0;"> Transfert du matériel en stock aux services de l'HPE</h3>
+  <button type="button" class="btn btn-add" data-toggle="modal" data-target="#exampleModal">
+   <span class="btn-icon-add"><i class="glyphicon glyphicon-plus"></i></span>Transferer du matériel</button>
+</div>
+
+<!-- Modal code-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top:150px;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <h3 class="modal-title" id="exampleModalLabel">Transferer un produit</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form  action="" method="post">
+          {{ transferer_materiel.csrf_token() }}
+
+            {{transferer_materiel.nommaterieltransfere.label(class="form-control-label")}}<br>
+              <div id="prod">
+            {{transferer_materiel.nommaterieltransfere(class="form-control form-control-lg")}}
+          </div>
+
+          <div id="from">
+          {{transferer_materiel.originematerieltransfere.label(class="form-control-label")}}<br>
+          {{transferer_materiel.originematerieltransfere(class="form-control form-control-lg")}}
+          </div>
+          <div id="to">
+          {{transferer_materiel.destinationmaterieltransfere.label(class="form-control-label")}}<br>
+          {{transferer_materiel.destinationmaterieltransfere(class="form-control form-control-lg")}}
+          </div>
+
+            {{transferer_materiel.quantitematerieltransfere.label(class="form-control-label")}}<br>
+          <div class="qty">
+            {{transferer_materiel.quantitematerieltransfere(class="form-control form-control-lg") }}
+          </div>
+          
+          <div id="raison">
+          {{transferer_materiel.raisonmaterieltransfere.label(class="form-control-label")}}<br>
+          {{transferer_materiel.raisonmaterieltransfere(class="form-control form-control-lg")}}
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+        <div class="move" >
+          {{ transferer_materiel.submitmaterieltransfere(class="btn btn-primary") }}
+       </div>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+<!--end of modal design-->
+
+  <table class="table table-hover">
+    <thead>
+     <tr>
+       <th>ID</th>
+       <th>Horodatage</th>
+       <th>Destination</th>
+       <th>Produit</th>
+       <th>Quantité </th>
+       <th>Coût </th>
+       <th>Raison</th>
+     </tr>
+    </thead>
+    <tbody>
+    {%for ce_transfert in tous_les_transferts%}
+     <tr>
+       <td>{{ce_transfert.id_transfert}}</td>
+       <td>{{ce_transfert.horodatage_transfert}}</td>
+       <td>{{ce_transfert.destination_transfert}}</td>
+       <td>{{ce_transfert.nom_produit_transfert}}</td>
+       <td>{{ce_transfert.quantite_transfert}}</td>
+       <td>{{ce_transfert.cout_transfert}}</td>
+       <td>{{ce_transfert.raison_transfert}}</td>
+     
+      <td>
+        <a href="{{ url_for('delete', id_transf_modifie_utilisateur = ce_transfert.id_transfert, choix_effacement ='transfert' )}}">
+        <button type="button" class="btn btn-delete">
+        <span class="btn-icon"><i class="glyphicon glyphicon-trash"></i></span>Effacer</button>
+      </td> 
+     </tr>
+     {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+
+  <!-- JQuery links  -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> <!-- NE PAS ENLEVER POUR POP UP-->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> <!-- NE PAS ENLEVER POUR POP-UP MODIF/AJOUT-->
+
+{% endblock content %}

@@ -1,0 +1,41 @@
+.ct-label {
+    fill: rgba(242, 242, 242, 0.4);
+    color: rgba(253, 250, 251, 0.91);
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+.ct-series-a .ct-bar, .ct-series-a .ct-line, .ct-series-a .ct-point, .ct-series-a .ct-slice-donut {
+    stroke: #8a98b382; /* Couleur des barres du BarChart chartist*/
+}
+
+.ct-bar {
+    fill: none;
+    stroke-width: 20px;   /* Epaisseur des barres */
+}
+
+/* Legende du Pie Chart Chartist */
+.ct-chart-donut .ct-label, .ct-chart-pie .ct-label {
+    dominant-baseline: central;
+    fill: #e9ebeea3;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+
+
+.ct-series-d .ct-area, .ct-series-d .ct-slice-donut-solid, .ct-series-d .ct-slice-pie {
+    fill: #8896b14f;   /* Mise à niveau */ 
+}
+
+.ct-series-a .ct-area, .ct-series-a .ct-slice-donut-solid, .ct-series-a .ct-slice-pie {
+    fill: #5dafe154; /* Casse */ 
+} 
+
+.ct-series-b .ct-area, .ct-series-b .ct-slice-donut-solid, .ct-series-b .ct-slice-pie {
+    fill: #7c787682; /* Vol */
+}
+
+.ct-series-c .ct-area, .ct-series-c .ct-slice-donut-solid, .ct-series-c .ct-slice-pie {
+    fill: #faf8fa52;  /* Defectueux */
+}

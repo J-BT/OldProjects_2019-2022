@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Page Administrateur HPE Info</title>
+      
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/admin_bootstrap.min.css') }}">
+        <!-- https://getbootstrap.com/ -->
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/admin_tooplate.css') }}">
+        
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/fullcalendar.min.css') }}">
+        
+        <!-- Pour BarChart et PieChart de Chart.js -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+
+        <!-- On importe le fichier qui permet de modifier le css des graphiques chartist -->
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/modif_css_pour_chartist.css') }}">
+
+        <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" 
+            rel="stylesheet">
+
+        <!--   
+                ###A INTEGRER AU LIEU DE L IMPORT LIGNE 19 pour Css plus moderne, mais changer boutons + h1,2...###
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        -->
+    </head>
+
+    <body id="reportsPage">
+        <div class="" id="home">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <nav class="navbar navbar-expand-xl navbar-light bg-light">
+                            <a class="navbar-brand" href="/Accueil_admin">
+                                
+                                <img src="{{ url_for('static', filename='img/Logo-Ramsay-Sante_admin.jpg') }}" width="100" height="90" alt="" class="d-inline-block align-middle mr-2">
+                                  <!-- Logo Text -->
+                                <span class="text-uppercase font-weight-bold">Administrateur Info</span>
+                            </a>
+
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <ul class="navbar-nav mx-auto">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" href="/Accueil_admin">Admin Dashboard
+                                            <span class="sr-only">(current)</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/Materiel">Stocks disponibles</a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/Service">Services HPE</a>
+                                    </li>
+                                    
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/Transfert">Transferts</a>
+                                    </li>
+                                    
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/">Deconnexion</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+                
+            {% block content %}
+
+
+            {% endblock %}
+                <footer class="row tm-mt-small" href="https://www.linkedin.com/in/jeanbaptistetheroulde/">
+                    <div class="col-12 font-weight-light" href="https://www.linkedin.com/in/jeanbaptistetheroulde/">
+                        
+                        <p class="d-inline-block tm-bg-black text-white py-2 px-4" href="https://www.linkedin.com/in/jeanbaptistetheroulde/">
+                            Created by
+                            <a rel="nofollow" href="https://www.linkedin.com/in/jeanbaptistetheroulde1/" class="text-white tm-footer-link">JBT</a>
+                        </p>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </body>
+</html>

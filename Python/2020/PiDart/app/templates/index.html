@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=d, initial-scale=1.0">
+    <title>PiDart</title>
+
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon/favicon.ico') }}"/>
+</head>
+
+<body>
+<!-- Background image -->
+    
+    <div class="bg-image " 
+    id="bannerTop">
+        <div class="mask" id="bannerPictureLayer">
+            <h1 id="bannerTitle"> Welcome to PiDart!!!</h1>
+        </div>
+    </div>
+    
+<!-- end Background image -->
+    <div class="row d-flex flex-row align-items-center justify-content-center"
+        id="canvas16_9">
+        <div class="col-md-3
+            d-flex flex-row align-items-center justify-content-center">Result C</div>
+        <div class="col-md-6
+            d-flex flex-row align-items-center justify-content-center">Canvas</div>
+        <div class="col-md-3
+            d-flex flex-row align-items-center justify-content-center">Result Python</div>
+    </div>
+    <div class="row d-flex flex-row align-items-center justify-content-center"
+        id="choices16_9">
+        <div class="col-md-3
+            d-flex flex-row align-items-center justify-content-center">C options</div>
+        <div class="col-md-6
+            d-flex flex-row align-items-center justify-content-center">Button</div>
+        <div class="col-md-3
+            d-flex flex-row align-items-center justify-content-center">Python options</div>
+    </div>
+
+    <!-- MDB -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.js"></script>
+
+    <script src="{{ url_for('static', filename='js/PiDart.js') }}"></script>
+</body>
+</html>

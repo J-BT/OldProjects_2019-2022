@@ -1,0 +1,142 @@
+{% extends "nouvelle_base_admin.html" %}
+
+
+{% block content %}
+        <!-- row -->
+        <div class="row tm-content-row tm-mt-big">
+            <div class="tm-col tm-col-big">
+                <div class="bg-white tm-block h-100">
+                    <h2 class="tm-block-title">Transferts par service</h2>
+                        <div id="container" class="ct-chart ct-minor-seventh" id='chart'></div>
+                </div>
+            </div>
+            <div class="tm-col tm-col-big">
+                <div class="bg-white tm-block h-100">
+                    <h2 class="tm-block-title">Classement des sorties de matériel</h2>
+                    <div class="ct-chart ct-minor-seventh" id='chart2'></div>
+                </div>
+            </div>
+            <div class="tm-col tm-col-small">
+                <div class="bg-white tm-block h-100">
+                    <h2 class="tm-block-title">Raisons de transfert (%)</h2>
+                    <div class="ct-chart ct-minor-seventh" id='chart3'></div>
+                </div>
+            </div>
+            
+             <div class="tm-col tm-col-small">
+                <div class="bg-white tm-block h-100">
+                    <table class="table table-hover">
+                        <thead>
+                         <tr>
+                           <th>Service</th>
+                           <th>Coût en €</th>
+                         </tr>
+                        </thead>
+                        <tbody>
+                        {%for cle, valeur in couts_par_service.items() %}
+                         <tr>
+                           <td>{{cle}}</td>
+                           <td>{{valeur}}</td>
+                         </tr>
+                         {% endfor %}
+                        </tbody>
+                      </table>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script> <!-- NE PAS ENLEVER POUR GRAPH-->
+
+        <!-- JQuery links  -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> <!-- NE PAS ENLEVER POUR POP UP-->
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> <!-- NE PAS ENLEVER POUR POP-UP MODIF/AJOUT-->
+
+
+        <!-- Pour le graph HighchartJS -->
+        <link rel="stylesheet" type="text/css" href="https://code.highcharts.com/css/stocktools/gui.css">
+        <link rel="stylesheet" type="text/css" href="https://code.highcharts.com/css/annotations/popup.css">
+
+        <script src="https://code.highcharts.com/stock/highstock.js"></script>
+        <script src="https://code.highcharts.com/stock/modules/data.js"></script>
+
+        <script src="https://code.highcharts.com/stock/indicators/indicators-all.js"></script>
+
+        <script src="https://code.highcharts.com/stock/modules/drag-panes.js"></script>
+        <script src="https://code.highcharts.com/stock/modules/annotations-advanced.js"></script>
+        <script src="https://code.highcharts.com/stock/modules/price-indicator.js"></script>
+        <script src="https://code.highcharts.com/stock/modules/full-screen.js"></script>
+
+        <script src="https://code.highcharts.com/stock/modules/stock-tools.js"></script>
+
+
+        <script type="text/javascript" src="{{ url_for('static', filename='js/accueil_admin_highchart.js') }}"></script>
+
+
+        <script>
+            /* 2eme Graph ****************************************************/
+            var getData = $.get('/Bar_chart');
+
+            /* On recupere la liste des services ecrite en python */
+            var labels_services = JSON.parse('{{ services_pr_labels | tojson }}');
+
+            getData.done(function(results) {
+
+                var data = {
+                    // On ecrit les labes de maniere dynamique
+                    labels: labels_services,
+
+                    // Our series array that contains series objects or in this case series data arrays
+                    series: [
+                        results.resultat
+                    ]
+                };
+
+                var options = {
+                    
+                }
+
+                // Create a new line chart object where as first parameter we pass in a selector
+                // that is resolving to our chart container element. The Second parameter
+                // is the actual data object.
+                var myChart = new Chartist.Bar('#chart2', data, options);
+
+            });
+
+            /* 3eme Graph ****************************************************/
+            var getData = $.get('/Pie_chart');
+
+            /* On recupere la liste des services ecrite en python */
+            
+            var labels_raisons= JSON.parse('{{ raisons_pr_labels | tojson }}');
+            
+            getData.done(function(results) {
+
+                var data = {
+                    // On ecrit les labes de maniere dynamique
+                    labels: labels_raisons,
+
+                    // Our series array that contains series objects or in this case series data arrays
+                    series: [
+                        results.defectueux, 
+                        results.mise_a_niveau,
+                        results.casse,
+                        results.vol,
+                        
+                    ]
+                };
+
+                var options = {
+                    
+                }
+
+                // Create a new line chart object where as first parameter we pass in a selector
+                // that is resolving to our chart container element. The Second parameter
+                // is the actual data object.
+                var myChart = new Chartist.Pie('#chart3', data, options);
+
+            });
+        </script>
+{% endblock %}          

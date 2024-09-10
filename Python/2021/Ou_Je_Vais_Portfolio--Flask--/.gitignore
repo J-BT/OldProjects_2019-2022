@@ -1,0 +1,21 @@
+# Cache
+__pycache__/**
+# Environnement Virtuel
+OuJeVaisFromScratch/**
+Ou_Je_Vais_Portfolio--Flask--/**
+
+#migrations
+logs/**
+migrations/**
+
+# Configuration
+.env
+#Jupyter Notebook
+*.ipynb
+# fichier sqlite si crée
+app.db
+
+
+
+#Socket
+Ou_Je_Vais_Portfolio--Flask--.sock

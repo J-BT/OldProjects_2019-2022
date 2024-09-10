@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://cdn.jsdelivr.net/gh/StephanWagner/svgMap@v2.2.1/dist/svgMap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.12.0/devicon.min.css">
+
+    <!-- Devicon -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <!-- Alertify -->
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+        <!-- Default theme -->
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+        <!-- Semantic UI theme -->
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
+  <!--  fin Alertify -->
+    <title>Où je vais</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon/favicon.ico') }}"/>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600"
+    />
+    <!-- css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  
+
+
+  </head>
+  <!--Nouveau body ----------------------------------------------------------->
+  <!-------------------------------------------------------------------------->
+  <body >
+    <div class="container-fluid mx-0 px-0">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar_top">
+        <!-- Container wrapper -->
+        <div class="container ">
+          <!-- Navbar brand -->
+          <a class="navbar-brand me-2" href="{{ url_for('main.accueil') }}">
+            <img
+            
+              src="{{ url_for('static', filename='img/default-monochrome-black.svg') }}"
+              height="90"
+              alt=""
+              loading="lazy"
+              style="margin-top: -1px;"
+            />
+          </a>
+
+          <!-- Toggle button -->
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-mdb-toggle="collapse"
+            data-mdb-target="#navbarButtonsExample"
+            aria-controls="navbarButtonsExample"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <i class="fas fa-bars"></i>
+          </button>
+
+          <!-- Collapsible wrapper -->
+          <div class="collapse navbar-collapse " id="navbarButtonsExample">
+            <!-- Left links -->
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('main.accueil') }}">Accueil</a>
+              </li>
+            
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('main.jy_vais_AJAX') }}">Où je vais ?</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('main.contact') }}">Contact</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link text-justify" href="" data-mdb-toggle="modal" 
+                data-mdb-target="#exampleModal2">A propos</a>
+              </li>
+            </ul>
+            <!-- Left links -->
+            
+            <div class="boutonsConnexionInscription">
+              {% if not current_user.is_authenticated %}
+              <a href="{{ url_for('auth.login') }}">
+                <button type="button" class="btn btn-link" 
+                id="boutonsConnexionInscription-item">
+                  Connexion
+                </button>
+              </a>
+              {% endif %}
+              {% if not current_user.is_authenticated %}
+              <a href="{{ url_for('auth.register') }}">
+                <button type="button" class="btn btn-primary"
+                id="boutonsConnexionInscription-item">
+                  Inscription
+                </button>
+              </a>
+              {% endif %}
+
+              {% if current_user.is_authenticated %}
+              <a href="{{ url_for('auth.logout') }}">
+                <button type="button" class="btn btn-outline-danger"
+                id="boutonsConnexionInscription-item">
+                  Déconnexion
+                </button>
+              </a>
+              {% endif %}
+            </div>
+          </div>
+          <!-- Collapsible wrapper -->
+        </div>
+        <!-- Container wrapper -->
+      </nav>
+      <!-- Navbar -->
+
+      <!-- à propos -->
+      <!-- Modal -->
+      <div
+      class="modal fade"
+      id="exampleModal2"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel2"
+      aria-hidden="true"
+      >
+      <div class="modal-dialog ">
+          <div class="modal-content">
+              <div class="modal-body">
+                <p class="mx-1 px-1 " id="aProposTexte">
+                    <div class="modal-header">
+                      <h5 class="modal-title" 
+                      id="exampleModalLabel2">Technologies utilisées</h5>
+                      <button
+                      type="button"
+                      class="btn-close"
+                      data-mdb-dismiss="modal"
+                      aria-label="Fermer"
+                      ></button>
+                  </div>
+                    <!--Tableau -->
+                    <!-- rounded-pill -->
+                    <table class="table table-responsive table-bordered border border-2 border-info"
+                    id="aProposTableau">
+                      <thead>
+                        <tr>
+                          <th scope="col">Front-end</th>
+                          <th scope="col">Back-end</th>
+                          <th scope="col">Base de données</th>
+                          <th scope="col">Serveur</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+
+
+                          
+                          {%for techno in plus_longue_liste_techno %}
+                            <tr>
+                              <td>{{technologiesUtilisees['frontend'][loop.index - 1]}}</td>
+                              <td>{{technologiesUtilisees['backend'][loop.index - 1]}}</td>
+                              <td>{{technologiesUtilisees['bdd'][loop.index - 1]}}</td>
+                              <td>{{technologiesUtilisees['serveur'][loop.index - 1 ]}}</td>   
+                            </tr> 
+                          {% endfor %} 
+                         
+                           
+                      </tbody>
+
+                    </table>
+
+                    <div class="modal-header">
+                      <h5 class="modal-title" 
+                      id="exampleModalLabel2">A propos du projet</h5>
+                    </div>
+                    
+                    <p>
+                      Grâce à des données démographiques ou météorologiques, 
+                      cette application determine un classement des destinations les
+                      plus susceptibles de vous plaire.
+                    </p>  
+                    
+                    <p>
+                      Pour l'instant vous avez le choix parmi 5 critères : 
+                      le nombre d'habitants, l'esperance de vie, le taux de chômage,
+                      la temperature et la météo.
+                    </p>
+
+                    <p id="nbLimitesAPI">NB : les données météo ne sont pas à jour car l'API
+                      d'OpenWeatherMap est payante au-delà d'un certain nombre 
+                      d'appels...</p>
+                  
+                    <p class="" id="miniTexteCertif">
+                    Projet présenté pour les certifications
+                    <strong><a 
+                      rel="nofollow"
+                      href="https://www.francecompetences.fr/recherche/rs/3497/" 
+                      class="tm-footer-link">RS3497</a></strong>  
+                    “Développer une base de données” et <strong><a 
+                      rel="nofollow"
+                      href="https://www.francecompetences.fr/recherche/rs/3508/" 
+                      class="tm-footer-link">RS3508</a></strong>  
+                    “Exploiter une base de données” de l'école Digifab.
+                    </p>
+
+                    <div class="modal-header">
+                      <h5 class="modal-title" 
+                      id="exampleModalLabel2">Sources</h5>
+                    </div>
+
+                    <p>
+                      L'Organisation de coopération et de développement économiques
+                      (<strong>OCDE</strong>)
+                    </p>
+                    <p>
+                      L'Organisation des Nations Unies pour l'éducation, la science
+                      et la Culture (<strong>UNESCO</strong>)
+                    </p>
+                    <p>
+                      Le service en ligne de prévisions météorologiques : (<strong>OpenWeatherMap</strong>)
+                    </p>
+                </p>          
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
+                  Fermer
+                  </button>
+              </div>
+          </div>
+        </div>
+      </div>
+    
+      <!-- fin à propos --> 
+    
+      {% block content %}
+
+      
+      {% endblock %}
+    
+
+      <!-- Formulaire contact -->
+      <footer class="container tm-footer">
+        <div class="row tm-footer-row">
+          <p class="col-md-10 col-sm-12 mb-0">
+            2020 - Created by
+            <a rel="nofollow" href="https://www.linkedin.com/in/jeanbaptistetheroulde/" class="tm-footer-link">Jean-Baptiste Theroulde</a>
+          </p>
+        </div>
+      </footer>
+    </div>
+    <!--fin container-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" 
+    crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/StephanWagner/svgMap@v2.2.1/dist/svgMap.min.js"></script>
+    <!-- MDB -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.js"></script>
+    <!-- Anime.js-->
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.0.1/lib/anime.min.js"></script>
+    <!-- JQuery : AJAX -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- Alertify js-->
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
+    <!-- Chart.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.0/chart.min.js"></script>
+
+    <script src="{{ url_for('static', filename='js/ouJeVais.js') }}"></script>
+  </body>
+  <!-- fin Nouveau body ------------------------------------------------------>
+  <!-------------------------------------------------------------------------->
+</html>

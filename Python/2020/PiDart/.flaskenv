@@ -1,0 +1,1 @@
+$PiDart:FLASK_APP=wgsi

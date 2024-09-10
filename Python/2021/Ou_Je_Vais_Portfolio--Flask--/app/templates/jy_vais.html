@@ -1,0 +1,291 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container_flash">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+     {%if messages %}
+          {%for category, message in messages %}
+            <div class="alert alert-{{ category }}">
+              <h4 style="text-align:center;">{{ message }}</h4>
+            </div>
+          {%endfor%}
+    {%endif %}
+  {%endwith%}
+</div>
+
+<!-- Animation JS Ou Je Vais -->
+<div class="col-12 col-md-12 col-lg-12 my-3" 
+id="animationOuJeVais"> 
+
+  <div id="avionJs">
+    <img src="{{ url_for('static', filename='img/airplane.png') }}" 
+        height="80"
+        alt=""/>
+  </div>
+
+  <h1 id="lettresJS">
+    <div class="mots" id="QUELLE">
+      <span class="letter" id="lettreDebut">Q</span>
+      <span class="letter" id="lettreDebut">U</span>
+      <span class="letter" id="lettreDebut">E</span>
+      <span class="letter" id="lettreDebut">L</span>
+      <span class="letter" id="lettreDebut">L</span>
+      <span class="letter" id="lettreDebut">E</span>
+    </div>
+    <div id="espaceLettres"></div>
+    <div class="mots" id="SERA">
+      <span class="letter" id="lettreAvantMilieu">S</span>
+      <span class="letter" id="lettreAvantMilieu">E</span>
+      <span class="letter" id="lettreAvantMilieu">R</span>
+      <span class="letter" id="lettreAvantMilieu">A</span>
+    </div>
+    <div id="espaceLettres"></div>
+    <div class="mots" id="VOTRE">
+      <span class="letter" id="lettreMilieu">V</span>
+      <span class="letter" id="lettreMilieu">O</span>
+      <span class="letter" id="lettreMilieu">T</span>
+      <span class="letter" id="lettreMilieu">R</span>
+      <span class="letter" id="lettreMilieu">E</span>
+    </div>
+    <div id="espaceLettres"></div>
+    <div class="mots" id="DESTINATION">
+      <span class="letter" id="lettreBas" >D</span>
+      <span class="letter" id="lettreBas">E</span>
+      <span class="letter" id="lettreBas">S</span>
+      <span class="letter" id="lettreBas">T</span>
+      <span class="letter" id="lettreBas">I</span>
+      <span class="letter" id="lettreBas">N</span>
+      <span class="letter" id="lettreBas">A</span>
+      <span class="letter" id="lettreBas">T</span>
+      <span class="letter" id="lettreBas">I</span>
+      <span class="letter" id="lettreBas">O</span>
+      <span class="letter" id="lettreBas">N</span>
+    </div>
+    <div id="espaceLettres"></div>
+    <div class="mots" id="?">
+      <span class="letter" id="lettrePointInterro">?</span>
+    </div>
+    <div id="espaceLettres"></div>
+  </h1>
+</div>
+
+
+<!-- Titre Preference + Selecteurs-->
+<div class="col-12 col-md-12 col-lg-12 my-5
+d-flex flex-column" 
+id="preferencesEtTitre"> 
+
+    <!-- Barre choix utilisateur -->
+    <div class="col-12 col-md-12 col-lg-12 
+    d-flex flex-column align-items-center justify-content-center" 
+    id="choix_barre">
+      <i class="fas fa-5x fa-question questionPreferences mx-5 my-3"></i>
+      <h3 class="questionPreferences">Quelles sont vos préférences ?</h3>
+      <p class="questionPreferences">(Pour l'instant) <u>un critère</u> à la fois...</p>
+    </div>
+
+    <div class="" id="vers_ancienne_version">
+      <a href="{{ url_for('main.jy_vais_AJAX') }}">
+        <button type="button" class="btn btn-secondary btn-sm" id="toOldVersionBtn"
+        style="background-color: #1e861e;">
+        vers nouvelle version
+        </button>
+      </a>
+    </div>
+        
+    <!-- Selecteur critères-->
+    <div class="my-5 col-12 col-md-12 col-lg-12  
+    d-flex flex-row flex-wrap align-items-center justify-content-around"
+    id="barreSelecteurs">
+      <form  action="" method="post" class="col-12 col-md-12 col-lg-12
+      d-flex flex-row flex-wrap align-items-center justify-content-around " 
+      id="formulaireSelecteursPreferences">
+          {{ choix_utilisateur.csrf_token() }}
+          <div class="selecteurPreferences" id="pop">
+          {{choix_utilisateur.nombre_population.label(class="form-control-label")}}<br>
+          {{choix_utilisateur.nombre_population(class="form-control form-control-lg")}}
+          </div>
+          <div class="selecteurPreferences" id="espe">
+          {{choix_utilisateur.esperance_vie.label(class="form-control-label")}}<br>
+          {{choix_utilisateur.esperance_vie(class="form-control form-control-lg")}}
+          </div>
+          <div class="selecteurPreferences" id="cho">
+            {{choix_utilisateur.taux_chomage.label(class="form-control-label")}}<br>
+            {{choix_utilisateur.taux_chomage(class="form-control form-control-lg")}}
+          </div>
+          <div class="selecteurPreferences" id="tempe">
+            {{choix_utilisateur.temperature.label(class="form-control-label")}}<br>
+            {{choix_utilisateur.temperature(class="form-control form-control-lg")}}
+          </div>
+          <div class="selecteurPreferences" id="meteo">
+            {{choix_utilisateur.meteo.label(class="form-control-label")}}<br>
+            {{choix_utilisateur.meteo(class="form-control form-control-lg")}}
+          </div>
+          <div>
+            <div class="selecteurPreferences" id="move">
+            {{ choix_utilisateur.choix_submit(class="btn btn-primary") }}
+          </div>
+
+          </div>
+          
+      </form>
+    </div>
+  </div>
+  <!-- fin Titre Preference + Selecteurs-->
+
+      
+  <!-- Features 
+
+  <div class="container tm-features-section" id="features">
+    <div class="row tm-features-row">
+      <section class="col-md-6 col-sm-12 tm-feature-block">
+        <header class="tm-feature-header">
+          <i class="fas fa-5x fa-table tm-feature-icon"></i>
+          <h3 class="tm-feature-h">Classement des pays</h3>
+        </header>
+        <p>
+          Une fois que vous aurez sélectionné le critère de votre choix, nous 
+          allons vous dresser un classement des destinations où vous devriez 
+          aller. Si jamais vous souhaitez connaître la liste des pays disponibles 
+          cliquez sur "Soumettre" sans selectionner un seul critère.
+        </p>
+        <p>
+           Les destinations visibles seront celles qui présentent des données
+           non nulles dans les bases de données de <strong>l'OCDE</strong> et 
+           d'<strong>OpenWeatherMap</strong>. 
+        </p>
+      </section>
+      <section class="col-md-6 col-sm-12 tm-feature-block">
+        <header class="tm-feature-header">
+          
+          <i class="fas fa-5x fa-chart-area tm-feature-icon"></i>
+          <h3 class="tm-feature-h">Analyse des critères</h3>
+        </header>
+        <p>
+          Une fois le classement des destinations effectué, nous analyserons
+          ensemble en détail les raisons de ce classement, notamment en nous 
+          aidant de graphiques <strong>Seaborn</strong> (prochainement Highchart)
+        </p>
+        <p>
+          Vous pourrez par exemple suivre l'evolution du taux de chômage du
+          pays en question sur plusieurs années ou encore connaître ses variations
+          de température sur les 5 derniers jours.
+        </p>
+      </section>
+    </div>
+  </div>
+  -->
+
+    <!-- Tableau -->
+    <div class="resultat_pays">
+      <div class="resultat">
+        {% if title == "J'y vais" %}
+
+          <div class="my-5 col-12 col-md-12 col-lg-12 
+            d-flex flex-column align-items-center justify-content-center" 
+            id="resultatTitre">
+            <i class="fas fa-5x fa-atlas mx-5 my-3"></i>
+              <h3 class="questionPreferences">Voici les pays disponibles : </h3>
+          </div>
+
+        {% else %}
+
+          <div class="my-5 col-12 col-md-12 col-lg-12 
+            d-flex flex-column align-items-center justify-content-center" 
+            id="resultatTitre">
+            <i class="fas fa-5x fa-atlas mx-5 my-3 "></i>
+              <h3 class="questionPreferences">Votre prochaine destination : {{title}} !!</h3>
+          </div>
+        {% endif %}
+
+
+        <div class="w-100 p-3" id="tableauClassement">
+          <table class="table table-responsive table-hover" 
+          >
+            <thead>
+              <tr>
+                <th scope="col">Pays</th>
+                <th scope="col">Population</th>
+                <th scope="col">Esperance de vie</th>
+                <th scope="col">Taux de chomage (%)</th>
+                <th scope="col">°C </th>
+                <th scope="col">°C J-5</th>
+                <th scope="col">Meteo J-5</th>
+              </tr>
+            </thead>
+            <tbody>
+              {%for ce_pays in pays %}
+              <tr>
+                <td>{{ce_pays['country_name']}}</td>
+                <td>{{ce_pays['country_pop']}}</td>
+                <td>{{ce_pays['country_life_exp']}}</td>
+                <td>{{ce_pays['country_unem_rate']}}</td>
+
+                <td>{{ce_pays['country_temp']}}</td>
+                <td>{{ce_pays['country_temp_5d']}}</td>
+                <td>{{ce_pays['country_weather_5d']}}</td>
+              </tr>
+              {% endfor %}
+              </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+
+
+      {% if title != "J'y vais" %}
+      
+    
+        <!-- Graphiques -->
+        <div class="my-5 col-12 col-md-12 col-lg-12 
+            d-flex flex-column align-items-center justify-content-center" 
+            id="resultatTitre">
+            <i class="fas fa-5x fa-chart-line mx-5 my-3"></i>
+              <h3 class="questionPreferences">Analyse Graphique du 1er pays: </h3>
+          </div>
+
+        <div class="graphiquesPar4 my-5 
+        d-flex flex-row flex-wrap align-items-center justify-content-around">
+          
+          <div class="graphiques my-5 col-12 col-md-6 col-lg-6
+            d-flex flex-column align-items-center justify-content-around">
+              <h2 class="" id="titreGraphique">Sa population </h2>
+              <img src="{{ url_for('static', filename='graphiques/population.png') }}" 
+              id="imagesGraphiques" alt="Image" />
+          </div>
+
+          <div class="graphiques my-5 col-12 col-md-6 col-lg-6
+            d-flex flex-column align-items-center justify-content-around">
+              <h2 class="" id="titreGraphique">Son chômage </h2>
+              <img src="{{ url_for('static', filename='graphiques/chomage.png') }}" 
+              id="imagesGraphiques" alt="Image" />
+              
+          </div>
+
+        
+       
+          
+          <div class="graphiques my-5 col-12 col-md-6 col-lg-6
+            d-flex flex-column align-items-center justify-content-around">
+              <h2 class="" id="titreGraphique">Son esperance de vie </h2>
+              <img src="{{ url_for('static', filename='graphiques/espe_vie.png') }}" 
+              id="imagesGraphiques" alt="Image" /> 
+              
+          </div>
+
+          <div class="graphiques my-5 my-5 col-12 col-md-6 col-lg-6 ">
+              <h2 class="" id="titreGraphique">Temp./Esp. vie/Pop./Cho </h2>
+              <img src="{{ url_for('static', filename='graphiques/corelation.png') }}" 
+              id="imagesGraphiques" alt="Image" /> 
+             
+          </div>
+        </div>
+        <!-- fin Graphiques -->
+      {% endif %}
+</div>
+    
+
+{% endblock %}
+

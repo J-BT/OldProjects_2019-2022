@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+  
+    <div class="container_flash">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {%if messages %}
+              {%for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                  <h4 style="text-align:center;">{{ message }}</h4>
+                </div>
+              {%endfor%}
+        {%endif %}
+      {%endwith%}
+    </div>
+    
+
+     <!-- Background image -->
+     <div class="p-5 text-center bg-image mb-5" id="photoBanniere">
+      <div class="mask" style="background-color: rgba(0, 0, 0, 0.4);">
+          <div class="d-flex justify-content-center align-items-center h-100">
+              <div class="text-white">
+                  <h1 id="bannerGrosTitre">Quelle sera votre destination ?</h1>
+                  <h3 id="bannerPetitTitre">Determinez la grâce aux données...</h3>
+              </div>
+          </div>
+      </div>
+    </div>
+    
+{% endblock %}

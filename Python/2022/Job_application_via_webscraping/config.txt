@@ -1,0 +1,16 @@
+## IMPORTANT : 1) Insert a space between a variable and your information
+## 		ex : DB_USER my_original_name
+##	       2) Your information musn't contain any space (use - ou _ instead)
+
+# database informations
+
+DB_USER {your_DB_USER}
+DB_PASS {your_DB_PASS}
+IP {your_IP}
+DB_PORT {your_DB_PORT}
+DB_NAME {your_DB_NAME}
+
+# outlook
+
+outlook_account {your_outlook_account}
+outlook_password {outlook_password}

@@ -1,0 +1,36 @@
+# depslib dependency file v1.0
+1608653086 source:/home/jbt/Bureau/C/Linux/lePenduSansMalloc/lePenduSansMalloc/affiche_caracteres_trouves.c
+
+1608653175 source:/home/jbt/Bureau/C/Linux/lePenduSansMalloc/lePenduSansMalloc/cacher_mot_cache.c
+
+1608653436 source:/home/jbt/Bureau/C/Linux/lePenduSansMalloc/lePenduSansMalloc/choix_recommencer_partie.c
+
+1608653572 source:/home/jbt/Bureau/C/Linux/lePenduSansMalloc/lePenduSansMalloc/lire_caractere_joueur.c
+
+1608655509 source:/home/jbt/Bureau/C/Linux/lePenduSansMalloc/lePenduSansMalloc/main.c
+	<stdlib.h>
+	<stdio.h>
+	<time.h>
+	<ctype.h>
+	<string.h>
+	"cacher_mot_cache.h"
+	"lire_caractere_joueur.h"
+	"affiche_caracteres_trouves.h"
+	"dessin_du_pendu.h"
+	"choix_recommencer_partie.h"
+	"nombre_tire_au_sort.h"
+
+1608653207 /home/jbt/Bureau/C/Linux/lePenduSansMalloc/lePenduSansMalloc/cacher_mot_cache.h
+
+1608653653 /home/jbt/Bureau/C/Linux/lePenduSansMalloc/lePenduSansMalloc/lire_caractere_joueur.h
+
+1608653132 /home/jbt/Bureau/C/Linux/lePenduSansMalloc/lePenduSansMalloc/affiche_caracteres_trouves.h
+
+1608656400 /home/jbt/Bureau/C/Linux/lePenduSansMalloc/lePenduSansMalloc/dessin_du_pendu.h
+
+1608653463 /home/jbt/Bureau/C/Linux/lePenduSansMalloc/lePenduSansMalloc/choix_recommencer_partie.h
+
+1608653719 /home/jbt/Bureau/C/Linux/lePenduSansMalloc/lePenduSansMalloc/nombre_tire_au_sort.h
+
+1608653695 source:/home/jbt/Bureau/C/Linux/lePenduSansMalloc/lePenduSansMalloc/nombre_tire_au_sort.c
+

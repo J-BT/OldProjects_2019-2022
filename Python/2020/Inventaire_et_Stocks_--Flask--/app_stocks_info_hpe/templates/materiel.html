@@ -1,0 +1,146 @@
+{% extends "nouvelle_base_admin.html" %}
+
+
+{% block content %}
+  <div class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+       {%if messages %}
+            {%for category, message in messages %}
+              <div class="alert alert-{{ category }}">
+                 <h4 style="text-align:center;">{{ message }}</h4>
+              </div>
+            {%endfor%}
+      {%endif %}
+    {%endwith%}
+  </div>
+  <div class="container">
+
+  <h1>Matériel</h1>
+  <div >
+    <h3 style="display: inline-block;margin:0;"> Ajouter ou supprimer du matériel</h3>
+    
+    <!-- Début Ajouter du materiel-->
+    <button type="button" class="btn btn-add" data-toggle="modal" data-target="#exampleModal">
+     <span class="btn-icon-add"><i class="glyphicon glyphicon-plus"></i></span>Ajouter du Matériel</button>
+  </div>
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top:150px;">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="exampleModalLabel">Ajouter du Matériel</h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+        <form  action="" method="post">
+            {{ ajouter_materiel.csrf_token() }}
+            {{ajouter_materiel.nommateriel.label(class="form-control-label")}}<br>
+            {{ajouter_materiel.nommateriel(class="form-control form-control-lg")}}
+
+            {{ajouter_materiel.quantitemateriel.label(class="form-control-label")}}<br>
+            <div class="prodname">
+              {{ajouter_materiel.quantitemateriel(class="form-control form-control-lg")}}
+            </div> 
+             {{ajouter_materiel.prixmateriel.label(class="form-control-label")}}<br>
+            <div class="prodprice">
+              {{ajouter_materiel.prixmateriel(class="form-control form-control-lg")}}
+            </div>   
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+          <div >
+            {{ ajouter_materiel.submitmateriel(class="btn btn-primary") }}
+         </div>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+  <!-- FIN Ajouter du matériel -->
+
+  <table class="table table-hover">
+  <thead>
+   <tr>
+     <th>ID</th>
+     <th>Nom du matériel</th>
+     <th>Quantités disponibles</th>
+     <th>Prix Unitaire</th>
+     <th>Valeur du stock (€)</th>
+     <th></th>
+     <th></th>
+   </tr>
+  </thead>
+  <tbody>
+  <!-- Début tableau matériel + bouton modifier + bouton effacer -->
+    {% for ce_materiel in tout_le_materiel %}
+    <tr>
+      <td>{{ce_materiel.id_materiel}}</td>
+      <td>{{ce_materiel.nom_materiel}}</td>
+      <td>{{ce_materiel.qte_materiel}}</td>
+      <td>{{ce_materiel.prix_unitaire}}</td>
+      <td>{{ce_materiel.valeur_stock}}</td>
+     <td>
+         <button type="button" class="btn btn-edit" data-toggle="modal" data-target ="#edit{{ce_materiel.id_materiel}}">
+         <span class="btn-icon"><i class="glyphicon glyphicon-pencil"></i></span>Modifier</button>
+     </td>
+     <!--editmodal-->
+     <div class="modal fade" id="edit{{ce_materiel.id_materiel}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top:150px;">
+       <div class="modal-dialog" role="document">
+         <div class="modal-content">
+           <div class="modal-header">
+             <h3 class="modal-title" id="exampleModalLabel">Modifier du matériel</h3>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+             </button>
+           </div>
+           <div id="modal-cont" class="modal-body" >
+          <form  action="" method="POST" id="materiaux">
+            <input type="hidden" name="idMaterielModifie" value="{{ce_materiel.id_materiel}}"/>
+            <input type="hidden" name="nomMaterielModifie" value="{{ce_materiel.nom_materiel}}"/>
+            <input type="hidden" name="qteMaterielModifie" value="{{ce_materiel.qte_materiel}}"/>
+            <input type="hidden" name="prixMaterielModifie" value="{{ce_materiel.prix_unitaire}}"/>
+            
+               {{ modifier_materiel.csrf_token() }}
+               {{modifier_materiel.modifnommateriel.label( class="form-control-label")}}<br>
+               {{ modifier_materiel.modifnommateriel( class="form-control form-control-lg", placeholder=ce_materiel.nom_materiel) }}
+
+               {{modifier_materiel.modifquantitemateriel.label(class="form-control-label")}}<br>
+               {{modifier_materiel.modifquantitemateriel(class="form-control form-control-lg", placeholder=ce_materiel.qte_materiel)}}
+
+               {{modifier_materiel.modifprixmateriel.label(class="form-control-label")}}<br>
+               {{modifier_materiel.modifprixmateriel(class="form-control form-control-lg", placeholder=ce_materiel.prix_unitaire)}}
+           </div>
+           <div class="modal-footer">
+             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+             <div >
+               {{ modifier_materiel.modifsubmitmateriel( class="btn btn-primary") }}
+             </div>
+           </div>
+         </form>
+        </div>
+      </div>
+     </div>
+     <td>
+        <a href="{{ url_for('delete', id_materiel_modifie_utilisateur = ce_materiel.id_materiel, choix_effacement ='materiel' )}}">
+         <button type="button" class="btn btn-delete">
+         <span class="btn-icon"><i class="glyphicon glyphicon-trash"></i></span>Effacer</button>
+     </td> 
+   </tr>
+  {% endfor %}
+
+  <!-- FIN tableau matériel + bouton modifier + bouton effacer -->
+  </tbody>
+
+  </table>
+  </div>
+
+
+  <!-- JQuery links  -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> <!-- NE PAS ENLEVER POUR GRAPH-->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> <!-- NE PAS ENLEVER POUR POP-UP MODIF/AJOUT-->
+{% endblock content %}

@@ -1,0 +1,8 @@
+# Cache
+__pycache__/**
+# Virtual env
+
+# email content & attachment
+email/content/my_email_content.txt
+email/attachment/CV_JB_Theroulde.pdf
+

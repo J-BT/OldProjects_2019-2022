@@ -1,0 +1,9 @@
+#Virutal env
+PiDart/
+PiDart
+
+#logs
+logs/
+
+#cache
+__pycache__/

@@ -1,0 +1,1 @@
+'totalThrows' : 100, 'throwsInside' : 83, 'throwsOutside' : 17, 'successRatio' : 0.830000, 'piApproximation' : 3.320000

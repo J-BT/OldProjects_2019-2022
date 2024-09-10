@@ -1,0 +1,357 @@
+
+body{
+  background-color: white;
+}
+
+@media screen and (max-width: 713px) {
+  #nomTitre{
+    height : 300px;
+  }
+}
+
+@media screen and (min-width: 765px) and (max-width: 1105px){
+  #nomTitre{
+    height : 140px;
+  }
+}
+
+
+
+#titresParties, p,
+ .titleh2, #siVousSouhaitez,
+ #exampleModalLabel2, #FermerButtonModal{
+  font-family: 'Urbanist', serif;
+}
+
+#texteTitre{
+  
+  font-family: 'PixelOperatorMonoHBRegular';
+  font-weight: normal;
+  font-style: normal;
+ 
+}
+#enBold{
+  font-weight: bold !important;
+}
+
+
+h1, h2 {
+    /*font-family: Courier;*/
+    font-weight: 200;
+    margin: 0.4rem;
+  }
+  
+  h1 {
+    font-size: 3.5rem;
+  }
+  
+  h2 {
+    font-size: 2rem;
+    color: #aaa;
+  }
+  
+  /* Cursor */
+  .txt-type > .txt {
+    border-right: 0.2rem solid #777;
+  }
+/*
+#titre #__bienvenue {
+    border: 3px rgb(36, 225, 250) ridge;
+}
+*/
+.card-body h5, .card-body h3, .mask h3{
+    font-family: Courier; 
+    font-weight: bold;
+}
+.mask h3{
+    color: white;
+}
+
+
+.portfolio_img{
+    margin: 2px 0 2px 0;
+    padding: 0 2px 0 2px;
+    /* max-width: 348px;
+    height: 521px; */
+}
+/*
+#photoProfil
+style="height: auto; width: 75%;"
+*/
+/* Pour les petits ecrans */
+@media screen and (max-width: 768px) {
+  #cardsModalPortfolio{
+    display: flex !important;
+    flex-direction: column !important;
+
+  }
+
+    #textImageModalPortfolio, .mask, #imageModalPortfolio{
+      text-align: center !important;
+      font-size: 0.9em;
+      
+    }
+    #photoProfil{
+      height: auto;
+      width: 90%;
+    }
+
+    #description_gd_ecrans {
+      display: none;
+    }
+    .valeurs_carousel {
+        font-size: 2em;
+        color:  white ;
+    }
+    .texte_carousel {
+        font-size: 0em;
+    }
+
+    #cards{
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    .legende{
+      font-size: 1em;
+    }
+    #parcoursGdMoyensEcrans{
+      display: none;
+    }
+    #rubriqueCVDDL{
+      margin-top: 10px;
+    }
+    #boutonsCV{
+      font-size: 0.8em;
+    }
+    #titresParties{
+      font-size: 2.0em;
+    }
+    #titresValeurs{
+      font-size: 1.5em;
+      font-weight: normal;
+    }
+    .logoLanguages {
+      height: 3.5rem;
+      width: 3.5rem;
+      
+    }
+    
+  }
+  /* fin petits ecrans */
+
+  /* Ecran moyens */
+  @media screen and (min-width: 576px) and (max-width: 768px) {
+    
+
+    #textImageModalPortfolio,
+     .mask, #imageModalPortfolio{
+      text-align: center !important;
+      font-size: 1em;
+      
+    }
+    #photoProfil{
+      height: auto;
+      width: 60%;
+    }
+  }
+
+  
+@media screen and (min-width: 900px) and (max-width: 1200px) {
+    #textImageModalPortfolio, .mask, #imageModalPortfolio{
+      text-align: center !important;
+      font-size: 1em;
+      
+    }
+  
+    #presentation {
+      
+        font-size: 3em;
+    }
+  }
+  
+
+/* Pour les Grands ecrans */
+@media screen and (min-width: 769px) {
+    #textImageModalPortfolio, .mask, #imageModalPortfolio{
+      text-align: center !important;
+      font-size: 1em;
+      
+    }
+    #photoProfil{
+      height: auto;
+      width: 75%;
+    }
+
+    #description_pt_ecrans {
+      display: none;
+    }
+    .valeurs_carousel {
+        font-size: 4em;
+        color:  white ;
+        
+    }
+    .texte_carousel {
+        font-size: 1.5em;
+        color:  white ;
+    }
+
+    #parcoursPetitsEcrans{
+      display: none;
+    }
+
+    #parcoursGdMoyensEcrans{
+      display: flex;
+      justify-content: center;
+    
+    }
+    #titresParties{
+      font-size: 3.0em;
+    }
+    #titresValeurs{
+      font-size: 2.5em;
+      font-weight: normal;
+    }
+    .logoLanguages {
+      height: 6rem;
+      width: 6rem;
+      
+  }
+
+  }
+  /* Fin grands écrans */
+
+
+.minilogoLanguages {
+  height: 3rem;
+  width: 3rem;
+}
+
+p {
+   text-align: justify;
+   text-justify: inter-word;
+   }
+
+#japan_flag{
+  border: 0.01px solid rgba(62, 58, 75, 0.657);
+  border-radius: 50%; 
+}
+
+#formulaireContact{
+  display:none;
+}
+
+
+.logoLanguages{
+  margin: 3px;
+}
+
+.carousel .carousel-inner #carouselBasicExample #valeurs{
+  width: 100%;
+}
+
+#svgMap{
+  width: 100%;
+  height: auto;
+}
+
+#svgMap-map-country-BR{
+  fill:rgb(15, 122, 81);
+}
+
+#svgMap-map-country-FR, #svgMap-map-country-JP{
+  fill:rgb(11, 64, 240);
+}
+
+
+#svgMap-map-country-GB, #svgMap-map-country-ES{
+  fill:rgb(241, 118, 17);
+}
+
+#bleu_map{
+  color: rgb(11, 64, 240);
+  
+}
+
+#orange_map{
+  color: rgb(241, 118, 17);
+}
+
+#rouge_map{
+  color: #cc0033;
+}
+
+#vert_map{
+  color :rgb(15, 122, 81);
+}
+
+.legende{
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+#carte_legende{
+  width: 90%;
+}
+
+#titresParties{
+  font-weight: 400;
+}
+
+#savoirPlusReconversion{
+  width: 100%;
+}
+
+#enSavoirPlusTexte{
+  font-size: 0.8em;
+}
+
+/****** modals Portfolio *******/
+
+#aProposTexte{
+  text-align: justify;
+}
+
+#miniTexteCertif{
+  text-align: justify;
+  border-style: dashed;
+  padding : 4px 4px 4px 4px;
+}
+#nbLimitesAPI{
+  text-decoration: underline #1b59bd;
+}
+#imageModalPortfolio:hover{
+  opacity: 0.8!important;
+}
+#imageModalPortfolio{
+  border-style: hidden !important;
+  border-radius: 10px !important;
+}
+
+/* Alertify **/
+
+#textAlertify{
+  color: rgb(255, 255, 255);
+}
+
+/* video */
+
+iframe{
+  width: 100%;
+  height: 40vh;
+}
+
+
+
+
+/* *********** ACTIVE Navbar CSS *************/
+.nav-link.active {
+      
+      height: 100% !important;
+      background-color: none !important;
+      /*border-radius: 0px !important;*/
+      width: fit-content !important;
+      border-bottom: solid 5px #bc7f4f !important;
+      margin-bottom: -5px;
+      /*border-bottom: solid 5px rgba(190, 86, 0, 0.7) !important;*/
+      padding-bottom: -5px !important;
+  }

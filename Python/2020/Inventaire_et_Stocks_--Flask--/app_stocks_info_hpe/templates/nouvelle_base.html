@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HPE Inventaire Service Informatique</title>
+  
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <!-- https://getbootstrap.com/ -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/tooplate.css') }}">
+    
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/fullcalendar.min.css') }}">
+
+</head>
+
+<body id="reportsPage">
+    <div class="" id="home">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="navbar navbar-expand-xl navbar-light bg-light">
+                        <a class="navbar-brand" href="/">
+                            
+                            <img src="{{ url_for('static', filename='img/Logo-Ramsay-Sante.png') }}" width="100" height="90" alt="" class="d-inline-block align-middle mr-2">
+                              <!-- Logo Text -->
+                            <span class="text-uppercase font-weight-bold">Stocks Info</span>
+                        </a>
+                        <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav mx-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="/">Dashboard
+                                        <span class="sr-only">(current)</span>
+                                    </a>
+                                </li>
+    
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/Materiel_destocke">Sorties de stock</a>
+                                </li>
+                                
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/Accueil_admin">Administration</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+            
+        {% block content %}
+
+
+        {% endblock %}
+            <footer class="row tm-mt-small" href="https://www.linkedin.com/in/jeanbaptistetheroulde1/">
+                <div class="col-12 font-weight-light" href="https://www.linkedin.com/in/jeanbaptistetheroulde1/">
+                    
+                    <p class="d-inline-block tm-bg-black text-white py-2 px-4" href="https://www.linkedin.com/in/jeanbaptistetheroulde1/">
+                        Created by
+                        <a rel="nofollow" href="https://www.linkedin.com/in/jeanbaptistetheroulde1/" class="text-white tm-footer-link">JBT</a>
+                    </p>
+                </div>
+            </footer>
+        </div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+    <!-- https://jquery.com/download/ -->
+    <script src="{{ url_for('static', filename='js/moment.min.js') }}"></script>
+    <!-- https://momentjs.com/ -->
+    <script src="{{ url_for('static', filename='js/utils.js') }} "></script>
+    <script src="{{ url_for('static', filename='js/Chart.min.js') }}"></script>
+    <!-- http://www.chartjs.org/docs/latest/ -->
+    <script src="{{ url_for('static', filename='js/fullcalendar.min.js') }} "></script>
+    <!-- https://fullcalendar.io/ -->
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }} "></script>
+    <!-- https://getbootstrap.com/ -->
+    <script src="{{ url_for('static', filename='js/tooplate-scripts.js') }} "></script>
+    <script>
+        let ctxLine,
+            ctxBar,
+            ctxPie,
+            optionsLine,
+            optionsBar,
+            optionsPie,
+            configLine,
+            configBar,
+            configPie,
+            lineChart;
+        barChart, pieChart;
+        // DOM is ready
+        $(function () {
+            updateChartOptions();
+            drawLineChart(); // Line Chart
+            drawBarChart(); // Bar Chart
+            drawPieChart(); // Pie Chart
+            drawCalendar(); // Calendar
+
+            $(window).resize(function () {
+                updateChartOptions();
+                updateLineChart();
+                updateBarChart();
+                reloadPage();
+            });
+        })
+    </script>
+</body>
+</html>

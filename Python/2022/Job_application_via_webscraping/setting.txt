@@ -1,0 +1,8 @@
+# Location of your own config.txt file. 
+# If you prefer to use the default one, don't modify the following line
+# 	Nb :If the script can't find any file, it will use the config.txt located
+#   	    at the root of the folder
+
+# config_location {absolute_path_of_your_config_file}
+config_location /home/jbt/.anshoPwd/config.txt
+

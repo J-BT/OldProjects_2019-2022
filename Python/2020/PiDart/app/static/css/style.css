@@ -1,0 +1,25 @@
+#bannerTop{
+    height: 30vh;
+    background-image: url('/static/img/patrick-EvMearrxas4-unsplash.jpg');
+    color: antiquewhite;
+}
+
+#bannerPictureLayer{
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    justify-content: center ;
+    align-items: center ;
+}
+
+#bannerTitle{
+    font-size: 3em;
+}
+
+#canvas16_9{
+    height: 50vh;
+}
+
+#choices16_9{
+    height: 20vh;
+}

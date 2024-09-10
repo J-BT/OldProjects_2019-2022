@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="lePenduSansMalloc" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/lePenduSansMalloc" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/lePenduSansMalloc" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="affiche_caracteres_trouves.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="affiche_caracteres_trouves.h" />
+		<Unit filename="cacher_mot_cache.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cacher_mot_cache.h" />
+		<Unit filename="choix_recommencer_partie.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="choix_recommencer_partie.h" />
+		<Unit filename="dessin_du_pendu.h" />
+		<Unit filename="lire_caractere_joueur.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="lire_caractere_joueur.h" />
+		<Unit filename="main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nombre_tire_au_sort.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nombre_tire_au_sort.h" />
+		<Extensions />
+	</Project>
+</CodeBlocks_project_file>

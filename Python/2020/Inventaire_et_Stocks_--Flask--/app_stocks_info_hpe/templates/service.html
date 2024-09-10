@@ -1,0 +1,121 @@
+{% extends "nouvelle_base_admin.html" %}
+
+{% block content %}
+<div class="container">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+     {%if messages %}
+          {%for category, message in messages %}
+            <div class="alert alert-{{ category }}">
+               <h4 style="text-align:center;">{{ message }}</h4>
+            </div>
+          {%endfor%}
+    {%endif %}
+  {%endwith%}
+</div>
+<div class="container">
+
+<h1>Services</h1>
+<div >
+  <h3 style="display: inline-block;margin:0;"> Ajouter ou supprimer un service</h3>
+  <button type="button" class="btn btn-add" data-toggle="modal" data-target="#exampleModal">
+   <span class="btn-icon-add"><i class="glyphicon glyphicon-plus"></i></span>Ajouter un Service</button>
+</div>
+
+<!-- Ajouter un service-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top:150px;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">Ajouter un Service</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <form  action="" method="post">
+          {{ ajouter_service.csrf_token() }}
+          {{ajouter_service.nomservice.label(class="form-control-label")}}<br>
+          {{ajouter_service.nomservice(class="form-control form-control-lg")}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+        <div >
+          {{ ajouter_service.submitservice(class="btn btn-primary") }}
+       </div>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+<!--Ajouter un service FIN-->
+
+<table class="table table-hover">
+<thead>
+ <tr>
+   <th>ID</th>
+   <th>Nom du service</th>
+   <th></th>
+   <th></th>
+ </tr>
+</thead>
+<tbody>
+
+  {% for ce_service in tous_les_services %}
+  <tr>
+    <td>{{ce_service.id_service}}</td>
+    <td>{{ce_service.nom_service}}</td>
+   <td>
+       <button type="button" class="btn btn-edit" data-toggle="modal" data-target ="#edit{{ce_service.id_service}}">
+       <span class="btn-icon"><i class="glyphicon glyphicon-pencil"></i></span>Modifier</button>
+   </td>
+   <!--editmodal-->
+   <div class="modal fade" id="edit{{ce_service.id_service}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top:150px;">
+     <div class="modal-dialog" role="document">
+       <div class="modal-content">
+         <div class="modal-header">
+           <h3 class="modal-title" id="exampleModalLabel">Modifier un service</h3>
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+           </button>
+         </div>
+         <div id="modal-cont" class="modal-body" >
+        <form  action="" method="POST" id="">
+          <input type="hidden" name="idServiceModifie" value="{{ce_service.id_service}}"/>
+          <input type="hidden" name="nomServiceModifie" value="{{ce_service.nom_service}}"/>
+             {{ modifier_service.csrf_token() }}
+             {{modifier_service.modifnomservice.label(class="form-control-label")}}<br>
+             {{ modifier_service.modifnomservice(class="form-control form-control-lg", placeholder=ce_service.nom_service) }}
+
+         </div>
+         <div class="modal-footer">
+           <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+           <div >
+             {{ modifier_service.modifsubmitservice(class="btn btn-primary") }}
+           </div>
+         </div>
+       </form>
+      </div>
+    </div>
+   </div>
+   <td>
+      <a href="{{ url_for('delete', id_service_modifie_utilisateur = ce_service.id_service, choix_effacement ='service' )}}">
+       <button type="button" class="btn btn-delete">
+       <span class="btn-icon"><i class="glyphicon glyphicon-trash"></i></span>Effacer</button>
+   </td>
+
+ </tr>
+{% endfor %}
+</tbody>
+
+</table>
+</div>
+
+
+<!-- JQuery links  -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> <!-- NE PAS ENLEVER POUR POP UP-->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> <!-- NE PAS ENLEVER POUR POP-UP MODIF/AJOUT-->
+
+{% endblock content %}
